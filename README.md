@@ -23,3 +23,17 @@ Caused by: org.hibernate.MappingException: Repeated column in mapping for entity
 	at app.HibernateUtil.<clinit>(HibernateUtil.java:22)
 
 Es tracta que bé modificant la classe Cliente o bé cambiant alguna configuració hibernate es pugui persistir l'objecte client i per tant que no doni més error.
+</br>
+RESPOSTA:
+### Solucio
+___
+La solució és afegir l'anotació @AttributeOverrides a una de les classes Direccion y que a l'hora d'insertar dades a la taula canvï el nom al que ti li indicas.
+</br>L'error es dona,ja que al declarar dos cops la classe Direccion a Cliente te els mateixos atributs repetits i per aixo donar error. 
+
+    @AttributeOverrides({
+            @AttributeOverride(name = "direccion", column = @Column(name = "direccionE")),
+            @AttributeOverride(name = "ciudad", column = @Column(name = "ciudadE")),
+            @AttributeOverride(name = "provincia", column = @Column(name = "provinciaE")),
+            @AttributeOverride(name = "codigoPostal", column = @Column(name = "codigopostalE")) })
+	    
+	    

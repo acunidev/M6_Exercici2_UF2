@@ -17,6 +17,11 @@ public class Cliente {
     private boolean vip;
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "direccion", column = @Column(name = "direccionE")),
+            @AttributeOverride(name = "ciudad", column = @Column(name = "ciudadE")),
+            @AttributeOverride(name = "provincia", column = @Column(name = "provinciaE")),
+            @AttributeOverride(name = "codigoPostal", column = @Column(name = "codigopostalE")) })
     private Direccion direccioEnvio;
 
     @Embedded
